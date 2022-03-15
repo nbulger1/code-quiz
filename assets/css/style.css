@@ -1,0 +1,49 @@
+/* Universal Selector */
+* {
+    box-sizing: content-box;
+}
+
+/* Body format */
+body {
+    /* defining the overall background color unless otherwise specified */
+    background-color: var(--lavendar);
+    /* Sans Serif fonts added in order of preference */
+    font-family: Helvetica, Arial, sans-serif;
+    margin: 0;
+}
+
+/* Setting paragraph format unless otherwise defined */
+p {
+    font-size: 16px;
+}
+
+.header-nav ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: black;
+    color: white;
+}
+
+.header a {
+    cursor: pointer;
+    color: white;
+}
+
+.welcome {
+    text-align: center;
+    display: block;
+}
+
+/* Auto hide all portions of HTML - switch display on and off with js */
+.question-1, .question-2, .question-3, .question-4, .question-5, .final-score, .highscores-page {
+    display: none;
+    text-align: center;
+}
+
+.question-1 ol, .question-2 ol, .question-3 ol, .question-4 ol, .question-5 ol {
+    display: table;
+    margin: 0 auto;
+}
