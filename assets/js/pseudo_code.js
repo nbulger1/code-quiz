@@ -46,3 +46,20 @@
     - identify tasks that can be broken into their own functions, outside the event handlers
     - Are there tasks that more than one event handler share?
 */
+
+
+//Natalie Psuedo Code
+
+//make one generic question container and 4 generic answer containers in HTML
+
+//Create an object of five questions and answers in js
+
+//set up the response system for the first question
+
+//Cycle through the questions
+
+//Use data attributes to select which one has been chosen
+
+//use local storage to store the answers to create the final score at the end
+
+//push the score on to an array of final scores
