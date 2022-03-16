@@ -14,23 +14,13 @@ var resultEl = document.querySelector(".result");
 var submitEl = document.querySelector(".submit");
 var nextEl = document.querySelector(".next");
 var finalScoreEl = document.querySelector(".final-score");
+var finalPercentageEl = document.querySelector(".final-percentage");
+var initialsEl = document.querySelector("#initials");
+var initialsListEl = document.querySelector(".initials-list");
 var continueEl = document.querySelector(".continue");
 var highscoresEl = document.querySelector(".highscores-page");
 var againEl = document.querySelector(".again");
 var clearEl = document.querySelector(".clear");
-
-var secondsLeft = 120;
-
-//Set initial attributes to hide everything but welcome
-welcomeEl.setAttribute("style", "display:block, text-align: center");
-questionBankEl.setAttribute("style","display:none");
-finalScoreEl.setAttribute("style","display:none");
-highscoresEl.setAttribute("style","display:none");
-
-var welcomeView = "visible";
-var questionsView = "hidden";
-var finalScoreView = "hidden";
-var highscoresView = "hidden";
 
 
 //Object of questions
@@ -81,137 +71,159 @@ var myQuestions = [
     },
 ];
 
-//function to make timer
-function setTime() {
-    // Sets interval in variable
-    var timerInterval = setInterval(function() {
-      //Subtract from the seconds variable
-      secondsLeft--;
-      //Create text portion of timer in upper right
-      timerEl.textContent = "Timer: " + secondsLeft;
-  
-      if(secondsLeft === 0) {
-        // Stops execution of action at set interval
-        clearInterval(timerInterval);
-        //Add an alert to say time is up when countdown ends
-      //   alert("Sorry! Time's up!");
-      }
-  
-    }, 1000);
-};
 
-startQuizEl.addEventListener("click", function() {
-    if(welcomeView === "visible"){
-        welcomeEl.setAttribute("style", "display:none");
-        welcomeView = "hidden";
-        questionBankEl.setAttribute("style","display:block");
-        questionsView = "visible";
-    } else {
-        welcomeEl.setAttribute("style", "display:block");
-    }
-    setTime();
-});
-
-//set start variable
-var start = true;
 //Set score to 0
 var score = 0;
 
-function questionLoop(id) {
 
+function buildQuiz() {
+    var secondsLeft = 120;
+    //function to make timer
+    function setTime() {
+        // Sets interval in variable
+        var timerInterval = setInterval(function() {
+        //Subtract from the seconds variable
+        secondsLeft--;
+        //Create text portion of timer in upper right
+        timerEl.textContent = "Timer: " + secondsLeft;
     
-    //Set default button backgrounds and make result text empty
-    answer1El.style.backgroundColor = "#ffffff";
-    answer2El.style.backgroundColor = "#ffffff";
-    answer3El.style.backgroundColor = "#ffffff";
-    answer4El.style.backgroundColor = "#ffffff";
-    resultEl.textContent = "";
-
-    //Fill in question and answers with first index in myQuestions object
-    questionEl.textContent = myQuestions[id].q;
-    answer1El.textContent = myQuestions[id].a[0].text;
-    answer2El.textContent = myQuestions[id].a[1].text;
-    answer3El.textContent = myQuestions[id].a[2].text;
-    answer4El.textContent = myQuestions[id].a[3].text;
-
-    //Gather whether the value is correct or incorrect using the boolean value in the object
-    answer1El.value = myQuestions[id].a[0].correct;
-    answer2El.value = myQuestions[id].a[1].correct;
-    answer3El.value = myQuestions[id].a[2].correct;
-    answer4El.value = myQuestions[id].a[3].correct;
-
-    //Create a state value to hold the option that was clicked
-    var state = ""
-    answer1El.addEventListener("click", function () {
-        //Turn the background color of the selected button aqua and make the rest of them white - repeat for other buttons so only the one selected is aqua
-        answer1El.style.backgroundColor = "#00ffff";
-        answer2El.style.backgroundColor = "#ffffff";
-        answer3El.style.backgroundColor = "#ffffff";
-        answer4El.style.backgroundColor = "#ffffff";
-        //fill in state variable with the true or false boolean value applied above to be checked later
-        state = answer1El.value;
-    });
-    answer2El.addEventListener("click", function () {
-        state = answer2El.value
-        answer1El.style.backgroundColor = "#ffffff";
-        answer2El.style.backgroundColor = "#00ffff";
-        answer3El.style.backgroundColor = "#ffffff";
-        answer4El.style.backgroundColor = "#ffffff";
-    });
-    answer3El.addEventListener("click", function () {
-        state = answer3El.value
-        answer1El.style.backgroundColor = "#ffffff";
-        answer2El.style.backgroundColor = "#ffffff";
-        answer3El.style.backgroundColor = "#00ffff";
-        answer4El.style.backgroundColor = "#ffffff";
-    });
-    answer4El.addEventListener("click", function () {
-        state = answer4El.value
-        answer1El.style.backgroundColor = "#ffffff";
-        answer2El.style.backgroundColor = "#ffffff";
-        answer3El.style.backgroundColor = "#ffffff";
-        answer4El.style.backgroundColor = "#00ffff";
-    });
+        if(secondsLeft === 0) {
+            // Stops execution of action at set interval
+            clearInterval(timerInterval);
+            //Add an alert to say time is up when countdown ends
+        //   alert("Sorry! Time's up!");
+        }
     
-    submitEl.addEventListener("click", function () {
+        }, 1000);
+    };
+    //Set initial attributes to hide everything but welcome
+    welcomeEl.setAttribute("style", "display:block, text-align: center");
+    questionBankEl.setAttribute("style","display:none");
+    finalScoreEl.setAttribute("style","display:none");
+    highscoresEl.setAttribute("style","display:none");
 
-        if(state == "true"){
-            resultEl.textContent = "That's Correct! Nice Job"
-            score = score + 1;
+    var welcomeView = "visible";
+    var questionsView = "hidden";
+    var finalScoreView = "hidden";
+    var highscoresView = "hidden";
+
+    startQuizEl.addEventListener("click", function() {
+        if(welcomeView === "visible"){
+            welcomeEl.setAttribute("style", "display:none");
+            welcomeView = "hidden";
+            questionBankEl.setAttribute("style","display:block");
+            questionsView = "visible";
         } else {
-            resultEl.textContent = "Sorry! That's incorrect"
-            //subtract time from the clock?
+            welcomeEl.setAttribute("style", "display:block");
+        }
+        //start timer here?
+    });
+
+    //set start variable
+    var start = true;
+
+    function questionLoop(id) {
+
+        //Set default button backgrounds and make result text empty
+        answer1El.style.backgroundColor = "#ffffff";
+        answer2El.style.backgroundColor = "#ffffff";
+        answer3El.style.backgroundColor = "#ffffff";
+        answer4El.style.backgroundColor = "#ffffff";
+        resultEl.textContent = "";
+
+        //Fill in question and answers with first index in myQuestions object
+        questionEl.textContent = myQuestions[id].q;
+        answer1El.textContent = myQuestions[id].a[0].text;
+        answer2El.textContent = myQuestions[id].a[1].text;
+        answer3El.textContent = myQuestions[id].a[2].text;
+        answer4El.textContent = myQuestions[id].a[3].text;
+
+        //Gather whether the value is correct or incorrect using the boolean value in the object
+        answer1El.value = myQuestions[id].a[0].correct;
+        answer2El.value = myQuestions[id].a[1].correct;
+        answer3El.value = myQuestions[id].a[2].correct;
+        answer4El.value = myQuestions[id].a[3].correct;
+
+        //Create a state value to hold the option that was clicked
+        var state = ""
+        answer1El.addEventListener("click", function () {
+            //Turn the background color of the selected button aqua and make the rest of them white - repeat for other buttons so only the one selected is aqua
+            answer1El.style.backgroundColor = "#00ffff";
+            answer2El.style.backgroundColor = "#ffffff";
+            answer3El.style.backgroundColor = "#ffffff";
+            answer4El.style.backgroundColor = "#ffffff";
+            //fill in state variable with the true or false boolean value applied above to be checked later
+            state = answer1El.value;
+        });
+        answer2El.addEventListener("click", function () {
+            state = answer2El.value
+            answer1El.style.backgroundColor = "#ffffff";
+            answer2El.style.backgroundColor = "#00ffff";
+            answer3El.style.backgroundColor = "#ffffff";
+            answer4El.style.backgroundColor = "#ffffff";
+        });
+        answer3El.addEventListener("click", function () {
+            state = answer3El.value
+            answer1El.style.backgroundColor = "#ffffff";
+            answer2El.style.backgroundColor = "#ffffff";
+            answer3El.style.backgroundColor = "#00ffff";
+            answer4El.style.backgroundColor = "#ffffff";
+        });
+        answer4El.addEventListener("click", function () {
+            state = answer4El.value
+            answer1El.style.backgroundColor = "#ffffff";
+            answer2El.style.backgroundColor = "#ffffff";
+            answer3El.style.backgroundColor = "#ffffff";
+            answer4El.style.backgroundColor = "#00ffff";
+        });
+        
+        submitEl.addEventListener("click", function () {
+
+            if(state == "true"){
+                resultEl.textContent = "That's Correct! Nice Job"
+                score = score + 1;
+            } else {
+                resultEl.textContent = "Sorry! That's incorrect"
+                //subtract time from the clock?
+            }
+        });
+    };
+
+    if(start) {
+        questionLoop(0);
+    }
+
+    var id = 0;
+    nextEl.addEventListener("click", function ()  {
+        start = false
+        if (id < myQuestions.length) {
+            id++
+            questionLoop(id);
+        } else {
+            questionBankEl.setAttribute("style","display:none");
+            finalScoreEl.setAttribute("style","display:block")
         }
     });
 
-    console.log(score)
-};
+    finalPercentageEl.textContent = "Final score: " + (score/5)*100 + "%";
 
-if(start) {
-    questionLoop(0);
+    continueEl.addEventListener("click", function() {
+        finalScoreEl.setAttribute("style","display:none");
+        highscoresEl.setAttribute("style", "display:block");
+        var newInitials = initialsEl.value.trim();
+        localStorage.setItem("initials", newInitials);
+        initialsListEl.textContent = localStorage.getItem("initials") + "  " + (score/5)*100 + "%";
+    });
 }
 
-var id = 0;
-nextEl.addEventListener("click", function ()  {
-    start = false
-    if (id < myQuestions.length) {
-        id++
-        questionLoop(id);
-    }
-});
-
-console.log(score)
-
-continueEl.addEventListener("click", function() {
-
-});
+buildQuiz(); 
 
 againEl.addEventListener("click", function() {
-
+    buildQuiz();
 });
 
 clearEl.addEventListener("click", function() {
-
+    initialsListEl.textContent = "";
 });
 
 
