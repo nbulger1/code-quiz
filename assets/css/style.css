@@ -27,11 +27,6 @@ p {
     color: white;
 }
 
-.header a {
-    cursor: pointer;
-    color: white;
-}
-
 .welcome {
     text-align: center;
     display: block;
@@ -40,4 +35,9 @@ p {
 .question-1 ol, .question-2 ol, .question-3 ol, .question-4 ol, .question-5 ol {
     display: table;
     margin: 0 auto;
+}
+
+.highscores {
+    cursor: pointer;
+    color: white;
 }

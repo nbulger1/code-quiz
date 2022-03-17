@@ -18,6 +18,7 @@ var finalPercentageEl = document.querySelector(".final-percentage");
 var initialsEl = document.querySelector("#initials");
 var initialsListEl = document.querySelector(".initials-list");
 var continueEl = document.querySelector(".continue");
+var highscoresNavEl = document.querySelector(".highscores");
 var highscoresEl = document.querySelector(".highscores-page");
 var againEl = document.querySelector(".again");
 var clearEl = document.querySelector(".clear");
@@ -72,11 +73,13 @@ var myQuestions = [
 ];
 
 
-//Set score to 0
-var score = 0;
+
 
 
 function buildQuiz() {
+    //Set score to 0
+    var score = 0;
+    //Set the amount of time alloted for the quiz
     var secondsLeft = 120;
     //function to make timer
     function setTime() {
@@ -121,6 +124,7 @@ function buildQuiz() {
 
     //set start variable
     var start = true;
+    var id = 0;
 
     function questionLoop(id) {
 
@@ -181,21 +185,24 @@ function buildQuiz() {
 
             if(state == "true"){
                 resultEl.textContent = "That's Correct! Nice Job"
-                score = score + 1;
+                score++;
             } else {
                 resultEl.textContent = "Sorry! That's incorrect"
                 //subtract time from the clock?
             }
         });
+        console.log(score)
     };
 
     if(start) {
         questionLoop(0);
     }
 
-    var id = 0;
+    //Problem is here...
+    id = 0;
     nextEl.addEventListener("click", function ()  {
         start = false
+        //for loop here? or a counter to keep iterating through myQuestions for (var i = 0; i < 5; i++)
         if (id < myQuestions.length) {
             id++
             questionLoop(id);
@@ -219,7 +226,14 @@ function buildQuiz() {
 buildQuiz(); 
 
 againEl.addEventListener("click", function() {
-    buildQuiz();
+    return buildQuiz();
+});
+
+highscoresNavEl.addEventListener("click", function() {
+    welcomeEl.setAttribute("style", "display:none");
+    questionBankEl.setAttribute("style","display:none");
+    finalScoreEl.setAttribute("style","display:none");
+    highscoresEl.setAttribute("style","display:block");
 });
 
 clearEl.addEventListener("click", function() {
