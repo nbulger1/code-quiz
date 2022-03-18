@@ -32,12 +32,24 @@ p {
     display: block;
 }
 
-.question-1 ol, .question-2 ol, .question-3 ol, .question-4 ol, .question-5 ol {
+.question-container, .navigation, .result, .final-score, .highscores-page {
+    text-align: center;
+}
+
+.answer-list {
     display: table;
     margin: 0 auto;
+}
+
+.answer-list ol li {
+    padding-bottom: 2.5px;
 }
 
 .highscores {
     cursor: pointer;
     color: white;
+}
+
+button {
+    cursor: pointer;
 }
