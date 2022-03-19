@@ -50,6 +50,13 @@ p {
     color: white;
 }
 
+.initials-list {
+    text-align: center;
+    background-color: lavender;
+    list-style: none;
+    padding: 5px;
+}
+
 button {
     cursor: pointer;
 }

@@ -224,27 +224,37 @@ nextEl.addEventListener("click", function ()  {
 });
 
 //Create a continue button from the final scores page that hides the final scores, directs to the leaderboard, and takes the initials entered into the input textbox and stores them in local storage to add to the initials list in the leaderboard
+
 var newInitials = [];
+var newScore = [];
 continueEl.addEventListener("click", function() {
     finalScoreEl.setAttribute("style","display:none");
     finalScoreView = "hidden";
     highscoresEl.setAttribute("style", "display:block");
     highscoresView = "visible";
+    
+    newScore = JSON.parse(localStorage.getItem("scores")) || [];
+    newScore.push((score/5)*100);
+    localStorage.setItem("scores", JSON.stringify(newScore));
+    console.log(newScore);
 
-    //Figure out this situation...
+    newInitials = JSON.parse(localStorage.getItem("initials")) || [];
     newInitials.push(initialsEl.value.trim());
-    console.log(newInitials)
     localStorage.setItem("initials", JSON.stringify(newInitials));
-    var lastInitials = JSON.parse(localStorage.getItem("initials"));
-    initialsListEl.textContent = lastInitials + "  " + (score/5)*100 + "%";
-    // initialsListEl.textContent = localStorage.getItem("initials") + "  " + (score/5)*100 + "%";
+    console.log(newInitials);
+
+    for (i=0; i < newInitials.length; i++) { 
+        let li = document.createElement("li"); 
+        li.textContent = newInitials[i] + " " + newScore[i] + "%"; 
+        initialsListEl.appendChild(li); 
+    }
 });
 
 //create an array of initials in localstorage? pull from to add to a list element in initialslistEl? -store the score as well? - need to continue to fix this ^^
 
 againEl.addEventListener("click", function() {
-    //Reload the page to restart the quiz
-    window.location.reload();
+    //Redirect back to html file
+    window.location.href = "./index.html";
     //Fill in leaderboard with
 });
 
