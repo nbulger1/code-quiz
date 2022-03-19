@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width">
     <!-- Linking HTML to CSS file -->
     <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Adding webpage title -->
     <title>Code Quiz</title>
 </head>
 
@@ -13,6 +14,7 @@
 <body>
     <header class="header">
         <nav class="header-nav">
+            <!-- Creating an unordered list to hold the timer and highscore navigation in header-->
             <ul>
                 <li class="highscores">View Highscores</li>
                 <li class="timer"></li>
@@ -24,12 +26,17 @@
         <section class="welcome">
             <h1>Coding Quiz Challenge</h1>
             <p>Try to answer the following code-related questions...</p>
+            <!-- Defining the start quiz button -->
             <button class="start-quiz">Start Quiz!</button>
         </section>
 
+        <!-- Generating a question bank to hold question text and answer option buttons -->
         <section class="question-bank">
+            <!-- Question container for question text -->
             <h1 class="question-container" id="question">Question 1</h1>
+            <!-- Creating a division for the answer list -->
             <div class="answer-list">
+                <!-- Ordered list of four buttons to hold the clickable answer options -->
                 <ol>
                     <li><button class = "answer" id = "answer-1">Answer 1</button></li>
                     <li><button class = "answer" id = "answer-2">Answer 2</button></li>
@@ -37,32 +44,38 @@
                     <li><button class = "answer" id = "answer-4">Answer 4</button></li>
                 </ol>
             </div>
+            <!-- Creating a navigation division to hold the two buttons for submission or navigating to the next question -->
             <div class="navigation">
                 <button class = "submit">Submit</button>
                 <button class = "next">Next Question</button>
             </div>
-            <div class="result">
-
-            </div>
+            <!-- Creating a space for the result that will pop up to inform the user whether the answer is correct or incorrect -->
+            <div class="result"></div>
         </section>
 
+        <!-- Final score section for presenting the % to the user and an input field for initials -->
         <section class="final-score">
             <h2>All Done!</h2>
+            <!-- Creating a space to hold the final score -->
             <p class="final-percentage"></p>
+            <!-- Creating the text input field for initials -->
             <p>Please enter your initials <input id="initials" type="text"></p>
-            <button class="continue" onclick="return validateInitials()">Continue</button>
+            <!-- Creating the continue button to navigate to the leaderboard -->
+            <button class="continue">Continue</button>
         </section>
 
         <section class="highscores-page">
             <h2>Leaderboard!</h2>
             <!--Populate with initials in order of score-->
             <ul class="initials-list"></ul>
+            <!-- Two button options from high scores page - try the quiz again or clear out the leaderboard -->
             <button class="again">Try Again</button>
             <button class="clear">Clear Leaderboard</button>
         </section>
 
     </main>
-    
+
+    <!-- Linking to javascript file -->
     <script src= "./assets/js/script.js"></script>
 
 </body>

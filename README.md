@@ -69,7 +69,7 @@ The leaderboard is populated with the current initials and scores from local sto
 The leaderboard has two buttons as well. One, Try Again, that will present the user with the beginning of the quiz again. The other that clears out the leaderboard by clearing the text content of the list as well as clearing local storage. 
 
 ## Tests
-As I went through each of my intended actions for the buttons to make sure they were behaving as expected:
+I went through each of my intended actions for the buttons to make sure they were behaving as expected:
 - View Highscores redirects to leaderboard?
 - Start Quiz presents first question and starts timer in top right?
 - Clicking an option turns the button background aqua?
