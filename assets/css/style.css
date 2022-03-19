@@ -5,8 +5,6 @@
 
 /* Body format */
 body {
-    /* defining the overall background color unless otherwise specified */
-    background-color: var(--lavendar);
     /* Sans Serif fonts added in order of preference */
     font-family: Helvetica, Arial, sans-serif;
     margin: 0;

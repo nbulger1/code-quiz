@@ -1,4 +1,4 @@
-//Event Handlers
+//Event Handlers for any section of the HTML I may want to target in Javascript
 var welcomeEl = document.querySelector(".welcome");
 var startQuizEl = document.querySelector(".start-quiz");
 var timerEl = document.querySelector(".timer");
@@ -24,7 +24,7 @@ var againEl = document.querySelector(".again");
 var clearEl = document.querySelector(".clear");
 
 
-//Object of questions
+//Array of questions
 var myQuestions = [
     {   id: 0,
         q: "What is a CSS selector?",
@@ -115,7 +115,9 @@ var questionsView = "hidden";
 var finalScoreView = "hidden";
 var highscoresView = "hidden";
 
-startQuizEl.addEventListener("click", function() {
+startQuizEl.addEventListener("click", function(event) {
+    event.preventDefault();
+
     if(welcomeView === "visible"){
         welcomeEl.setAttribute("style", "display:none");
         welcomeView = "hidden";
@@ -210,7 +212,9 @@ var id = 0;
 //run the initial questionLoop to populate the first question using id = 0
 questionLoop(id);
 //create a next question button that when clicked continues to replace the question text with the next question until there are no more questions then hides the question bank and displays the finalscore section with the calculated percentage correct
-nextEl.addEventListener("click", function ()  {
+nextEl.addEventListener("click", function (event)  {
+    event.preventDefault();
+
     if (id < myQuestions.length) {
         id = id + 1
         questionLoop(id);
@@ -227,21 +231,66 @@ nextEl.addEventListener("click", function ()  {
 
 var newInitials = [];
 var newScore = [];
-continueEl.addEventListener("click", function() {
-    finalScoreEl.setAttribute("style","display:none");
-    finalScoreView = "hidden";
-    highscoresEl.setAttribute("style", "display:block");
-    highscoresView = "visible";
-    
-    newScore = JSON.parse(localStorage.getItem("scores")) || [];
-    newScore.push((score/5)*100);
-    localStorage.setItem("scores", JSON.stringify(newScore));
-    console.log(newScore);
 
+continueEl.addEventListener("click", function(event) {
+    event.preventDefault();
+    //Add in validation to make sure initials are entered in the text field before continuing
+    if(initialsEl.value.length == 0){
+        alert("Please enter initials!")
+        return;
+    } else {
+        welcomeEl.setAttribute("style", "display:none");
+        questionBankEl.setAttribute("style","display:none");
+        questionsView = "hidden"
+        finalScoreEl.setAttribute("style","display:none");
+        finalScoreView = "hidden"
+        highscoresEl.setAttribute("style","display:block");
+        highscoresView = "visible"
+        
+        //Push the score in percentage form onto the newScore array after filling it in with the current scores in storage
+        newScore = JSON.parse(localStorage.getItem("scores")) || [];
+        
+        newScore.push((score/5)*100);
+        localStorage.setItem("scores", JSON.stringify(newScore));
+        console.log(newScore);
+    
+        //Push the initials onto the newInitials array after filling it in with the current initials in storage
+        newInitials = JSON.parse(localStorage.getItem("initials")) || [];
+        newInitials.push(initialsEl.value.trim());
+        localStorage.setItem("initials", JSON.stringify(newInitials));
+        console.log(newInitials);
+    
+        //Run through the initials and scores arrays to generate list items on the initials list ul in HTML that show the initials with the individual's quiz score
+        for (i=0; i < newInitials.length; i++) { 
+            let li = document.createElement("li"); 
+            li.textContent = newInitials[i] + " " + newScore[i] + "%"; 
+            initialsListEl.appendChild(li); 
+        }
+    }
+
+});
+
+againEl.addEventListener("click", function(event) {
+    event.preventDefault();
+    //Redirect back to html file
+    window.location.href = "./index.html";
+});
+
+//Hide all of the HTML sections aside from the highscore leaderboard when the highscores navigation element in the header is clicked
+highscoresNavEl.addEventListener("click", function(event) {
+    event.preventDefault(); 
+    
+    welcomeEl.setAttribute("style", "display:none");
+    questionBankEl.setAttribute("style","display:none");
+    questionsView = "hidden"
+    finalScoreEl.setAttribute("style","display:none");
+    finalScoreView = "hidden"
+    highscoresEl.setAttribute("style","display:block");
+    highscoresView = "visible"
+
+    //Fill in the leaderboard if highscores in the top left is clicked
+    newScore = JSON.parse(localStorage.getItem("scores")) || [];
     newInitials = JSON.parse(localStorage.getItem("initials")) || [];
-    newInitials.push(initialsEl.value.trim());
-    localStorage.setItem("initials", JSON.stringify(newInitials));
-    console.log(newInitials);
 
     for (i=0; i < newInitials.length; i++) { 
         let li = document.createElement("li"); 
@@ -250,25 +299,11 @@ continueEl.addEventListener("click", function() {
     }
 });
 
-//create an array of initials in localstorage? pull from to add to a list element in initialslistEl? -store the score as well? - need to continue to fix this ^^
-
-againEl.addEventListener("click", function() {
-    //Redirect back to html file
-    window.location.href = "./index.html";
-    //Fill in leaderboard with
-});
-
-//Hide all of the HTML sections aside from the highscore leaderboard when the highscores navigation element in the header is clicked
-highscoresNavEl.addEventListener("click", function() {
-    welcomeEl.setAttribute("style", "display:none");
-    questionBankEl.setAttribute("style","display:none");
-    finalScoreEl.setAttribute("style","display:none");
-    highscoresEl.setAttribute("style","display:block");
-});
-
 //Clear out any text content of the leaderboard
-clearEl.addEventListener("click", function() {
+clearEl.addEventListener("click", function(event) {
+    event.preventDefault();
     initialsListEl.textContent = "";
+    localStorage.clear();
 });
 
 
