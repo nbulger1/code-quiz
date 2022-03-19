@@ -15,6 +15,7 @@ p {
     font-size: 16px;
 }
 
+/* Setting header background to black with white text and turning header into flex box and spreading out the list items to either side of the header */
 .header-nav ul {
     list-style-type: none;
     display: flex;
@@ -25,29 +26,35 @@ p {
     color: white;
 }
 
+/* Aligning the welcome section in the center and displaying block */
 .welcome {
     text-align: center;
     display: block;
 }
 
+/* text align the other HTML sections to the center when visible */
 .question-container, .navigation, .result, .final-score, .highscores-page {
     text-align: center;
 }
 
+/* Turn the answer list into a table layout to center the buttons and numbers together */
 .answer-list {
     display: table;
     margin: 0 auto;
 }
 
+/* Give the buttons some breathing room */
 .answer-list ol li {
     padding-bottom: 2.5px;
 }
 
+/** Turn the View Highscores portion of the header white and make the cursor turn into a pointer when hovering over to show it is clickable */
 .highscores {
     cursor: pointer;
     color: white;
 }
 
+/* Make the initials list background color lavendar, align the text center, and remove bullet points */
 .initials-list {
     text-align: center;
     background-color: lavender;
@@ -55,6 +62,7 @@ p {
     padding: 5px;
 }
 
+/* Whenever the cursor is on a button turn the cursor into a pointer to show it is clickable */
 button {
     cursor: pointer;
 }
