@@ -81,7 +81,7 @@ I went through each of my intended actions for the buttons to make sure they wer
 - Try Again starts the quiz over?
 - Clear Leaderboard clears the text content of leaderboard and clears local storage?
 
-![GIF demonstrating testing the code quiz for a variety of continues as well as assessing all button functionality](https://github.com/nbulger1/code-quiz/blob/main/assets/images/code_quiz_test.gif)
+![GIF demonstrating testing the code quiz for a variety of continues as well as assessing all button functionality](https://github.com/nbulger1/code-quiz/blob/main/assets/images/code_quiz_test_2.gif)
 
 ## Link
 
