@@ -64,7 +64,7 @@ The continue button, when clicked, then takes them to the leaderboard as well as
 
 > **LEADERBOARD**
 
-The leaderboard is populated with the current initials and scores from local storage with the most current user at the bottom. I would have liked to order these by highscore, but I was unsure how to achieve this. 
+The leaderboard is populated with the current initials and scores from local storage with the highest score at the top and the lowest score at the bottom. To order the scores from highest to lowest, I created a for loop that looked at my newScores array (populated from local storage) and pulled the highest score from the array to place it in an array called orderScore. Once I pulled that value, I populated which index in the original array that was in a new index array called orderIndex. The loop continued to sort through the newScores array to pull the next highest score, since the next one is not equal to the current high score, and push it onto the end of the orderScore array. I then used the current index of the high score to order the newInitials array into the same order as the scores so the initials did not get disconnected from their initials. These new ordered arrays were used to create the text content of the leaderboard list.   
 
 The leaderboard has two buttons as well. One, Try Again, that will present the user with the beginning of the quiz again. The other that clears out the leaderboard by clearing the text content of the list as well as clearing local storage. 
 

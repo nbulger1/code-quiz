@@ -261,13 +261,35 @@ continueEl.addEventListener("click", function(event) {
         newInitials.push(initialsEl.value.trim());
         localStorage.setItem("initials", JSON.stringify(newInitials));
         console.log(newInitials);
-    
-        //Run through the initials and scores arrays to generate list items on the initials list ul in HTML that show the initials with the individual's quiz score
-        for (i=0; i < newInitials.length; i++) { 
+
+        //orderinitials and orderscore creation
+        var orderInitials = [];
+        var orderScore = [];
+        var orderIndex = [];
+        
+        for(i=0; i<newScore.length; i++){
+            var highScore = -1;
+            var highIdx = 0;
+            for(j=0; j<newScore.length; j++){
+                if (!orderIndex.includes(j)){
+                    if (newScore[j] > highScore){
+                        highScore = newScore[j];
+                        highIdx = j;
+                    }
+                }
+            }
+
+            orderInitials.push(newInitials[highIdx]);
+            orderScore.push(newScore[highIdx]);
+            orderIndex.push(highIdx);
+        }
+
+        for (i=0; i < orderInitials.length; i++) { 
             let li = document.createElement("li"); 
-            li.textContent = newInitials[i] + " " + newScore[i] + "%"; 
+            li.textContent = orderInitials[i] + " " + orderScore[i] + "%"; 
             initialsListEl.appendChild(li); 
         }
+
     }
 
 });
