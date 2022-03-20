@@ -85,4 +85,4 @@ I went through each of my intended actions for the buttons to make sure they wer
 
 ## Link
 
-See following for a link to my deployed application: 
+See following for a link to my deployed application: https://nbulger1.github.io/code-quiz/
