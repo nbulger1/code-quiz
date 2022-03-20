@@ -153,6 +153,8 @@ function questionLoop(id) {
     answer2El.value = myQuestions[id].a[1].correct;
     answer3El.value = myQuestions[id].a[2].correct;
     answer4El.value = myQuestions[id].a[3].correct;
+    
+    return;
 };
 
 answer1El.addEventListener("click", function () {
@@ -188,7 +190,6 @@ answer4El.addEventListener("click", function () {
     answer3El.style.backgroundColor = "#ffffff";
     answer4El.style.backgroundColor = "#00ffff";
 });
-    console.log("state: ", state);
 
 //create a submit button so that the user can click on multiple different answers before deciding on one without it automatically counting them correct or incorrect
 
@@ -215,7 +216,8 @@ questionLoop(id);
 nextEl.addEventListener("click", function (event)  {
     event.preventDefault();
 
-    if (id < myQuestions.length) {
+    //If my id value is less than or equal to the question array length minus one then continue to call the question loop question function - otherwise hide and move on to final scores
+    if (id < myQuestions.length - 1) {
         id = id + 1
         questionLoop(id);
     } else {
@@ -279,7 +281,7 @@ againEl.addEventListener("click", function(event) {
 //Hide all of the HTML sections aside from the highscore leaderboard when the highscores navigation element in the header is clicked
 highscoresNavEl.addEventListener("click", function(event) {
     event.preventDefault(); 
-    
+
     welcomeEl.setAttribute("style", "display:none");
     questionBankEl.setAttribute("style","display:none");
     questionsView = "hidden"

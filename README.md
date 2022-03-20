@@ -54,7 +54,7 @@ I added an event listener for a click on each of my answer option buttons. Once 
 
 Once the user chooses an option then they can click the submit button to see if their answer was correct or incorrect. I included a submit button so the user could click multiple options without being forced to submit one of them. Once the submit button is clicked then the results text will appear below the buttons to show whether the answer was right or wrong. If the answer was wrong then I subtracted 5 seconds from the timer. If the answer was correct then I added 1 to my score variable (previously set to 0 at the beginning).
 
-The next question button could then be clicked to change out the question by looping through the questionLoop created above. If there were no more questions then two clicks of the next question button will hide the question bank and present the final scores section. 
+The next question button could then be clicked to change out the question by looping through the questionLoop created above. If there were no more questions then the next question button will hide the question bank and present the final scores section. 
 
 > **FINAL SCORES**
 
