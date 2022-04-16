@@ -13,10 +13,13 @@ This task was meant to familiarize us with some of the tests we may be presented
 - [Javascript](#javascript)
 - [Tests](#tests)
 - [Link](#link)
+- [License](#license)
 
 ## Application 
 
 The user story stated that the user is a coding bootcamp student who wants to take a timed quiz on Javascript fundamentals. The acceptance criteria included a start button that starts the timer and presents the first question. When the question was answered then the user was to be presented with another question. If the answer was incorrect then time was to be subtracted from the timer. After all the questions were answered or the timer reaches 0 then the quiz should be over. The user should be able to save their initials and scores to gauge progress as well as compare with peers. 
+
+Technologies used: HTML, CSS, Javascript, Local Storage, DOM Manipulation
 
 ## HTML
 
@@ -86,3 +89,7 @@ I went through each of my intended actions for the buttons to make sure they wer
 ## Link
 
 See following for a link to my deployed application: https://nbulger1.github.io/code-quiz/
+
+## License 
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
